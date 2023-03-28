@@ -1,0 +1,62 @@
+<div class="container mt-3">
+  <div>
+    <label
+      ><fa-icon [icon]="faArrowDown"></fa-icon
+      ><fa-icon [icon]="faArrowUp"></fa-icon> Sort by:</label
+    >
+    <select [(ngModel)]="selectedFilter" (ngModelChange)="sortTarrifs()">
+      <option value="download descending">Download Speed Descending</option>
+      <option value="download ascending">Download Speed Ascending</option>
+      <option value="upload descending">Upload Speed Descending</option>
+      <option value="upload ascending">Upload Speed Ascending</option>
+      <option value="price ascending">Price Ascending</option>
+      <option value="price descending">Price Descending</option>
+    </select>
+  </div>
+  <div *ngIf="tarrifs$ | async as tarrifs">
+    <div
+      class="border mt-2 card"
+      *ngFor="let tarrif of sortedTarrifs; let key = index"
+    >
+      <div class="serial-number">{{ key + 1 }}.</div>
+      <div class="">
+        <div class="tariff-name">
+          {{ tarrif.name }}
+        </div>
+      </div>
+      <div class="download-speed">
+        <div>
+          <div>
+            <div class="speed-label">Download</div>
+            <div class="speed-container">
+              <fa-icon [icon]="faCloudArrowDown"></fa-icon>
+              {{ tarrif.download }} Mbit/s
+            </div>
+          </div>
+          <div class="upload-container">
+            <div class="speed-label">Upload</div>
+            <div class="speed-container">
+              <fa-icon [icon]="faCloudArrowUp"></fa-icon>
+              {{ tarrif.upload }} Mbit/s
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="benefits">
+        <ul *ngFor="let benefit of tarrif.benefits">
+          <li>{{ benefit }}</li>
+        </ul>
+      </div>
+      <div class="price">
+        <div>{{ tarrif.price }}€</div>
+        <button>To Tariff <fa-icon [icon]="faChevronRight"></fa-icon></button>
+      </div>
+      <div class="prices-mobile">
+        <div>{{ tarrif.price }}€</div>
+        <div class="mobile-button">
+          <fa-icon [icon]="faChevronRight"></fa-icon>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
