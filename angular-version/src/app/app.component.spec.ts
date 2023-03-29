@@ -70,5 +70,4 @@ describe('AppComponent', () => {
     expect(component.sortedTarrifs).toEqual([tariffs[0], tariffs[2], tariffs[1]]);
   });
 
-  // Additional [test cases](poe://www.poe.com/_api/key_phrase?phrase=test%20cases&prompt=Tell%20me%20more%20about%20test%20cases.) for other functionality
 });
